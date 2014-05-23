@@ -27,9 +27,16 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+      // js: {
+      //   files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '!<%= yeoman.app %>/scripts/coffee.js'],
+      //   tasks: ['newer:jshint:all'],
+      //   options: {
+      //     livereload: true
+      //   }
+      // },
+      coffee: {
+        files: ['app/scripts/**/*.coffee'],
+        tasks: ['coffee:compile'],
         options: {
           livereload: true
         }
@@ -348,6 +355,22 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      }
+    },
+    coffee: {
+      compile: {
+        options: {
+          join: true
+        },
+        files: {
+          'app/scripts/coffee.js': ['app/scripts/**/*.coffee'] // concat then compile into single file
+        }
+        // expand: true,
+        // flatten: true,
+        // cwd: 'app/scripts/ts',
+        // src: ['*.coffee'],
+        // dest: 'scripts/coffee/',
+        // ext: '.js'
       }
     }
   });
