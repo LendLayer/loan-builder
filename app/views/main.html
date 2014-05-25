@@ -8,15 +8,25 @@
 </div>
 
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
+  <h1>Loan Plan Builder</h1>
 </div>
 
 <div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <payments-graph loan="loan"></payments-graph>
 
+  <p>Amount</p>
+  <slider floor="1000" ceiling="10000" step="1" precision="0" ng-model="loan.amount"></slider>
+  <p>Grace period</p>
+  <slider floor="0" ceiling="12" step="1" precision="0" ng-model="loan.grace_months"></slider>
+  <p>Number of monthly payments</p>
+  <slider floor="1" ceiling="24" step="1" precision="0" ng-model="loan.payments"></slider>
+  <p>Interest rate</p>
+  <slider floor="0.0" ceiling="20.0" step="0.1" precision="1" ng-model="loan.interest_rate"></slider>
+
+  <p>The amount is ${{loan.amount}}.</p>
+  <p>The grace period is {{loan.grace_months}} months.</p>
+  <p>The loan is paid over {{loan.payments}} monthly payments.</p>
+  <p>The interest rate is {{loan.interest_rate}}.</p>
 </div>
 
 <div class="footer">

@@ -3,5 +3,6 @@
 angular.module('insightFellowsApp', [
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'uiSlider'
 ]);
