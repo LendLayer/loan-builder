@@ -363,7 +363,7 @@ module.exports = function (grunt) {
           join: true
         },
         files: {
-          'app/scripts/coffee.js': ['app/scripts/**/*.coffee'] // concat then compile into single file
+          'app/scripts/coffee.js': ['app/scripts/**/*.coffee', '!app/scripts/**/*_spec.coffee'] // concat then compile into single file
         }
         // expand: true,
         // flatten: true,
