@@ -13,8 +13,22 @@ describe Loan, ->
       interest_rate: "8.0"
 
     it 'stores the info', ->
-      expect(loan.amount       ).toBe(1000)
-      expect(loan.grace_months ).toBe(0)
-      expect(loan.payments     ).toBe(1)
-      expect(loan.interest_rate).toBe(8.0)
+      expect(loan.amount            ).toBe(1000)
+      expect(loan.grace_months      ).toBe(0)
+      expect(loan.number_of_payments).toBe(1)
+      expect(loan.interest_rate     ).toBe(8.0)
+
+    it 'calculates the balances', ->
+      expect(loan.balances()).toEqual [
+        1000
+        0
+      ]
+
+    it 'calculates the total interest', ->
+      expect(loan.totalInterest()).toEqual 80
+
+    it 'calculates the payments', ->
+      expect(loan.payments()).toEqual [
+        1080
+      ]
 
