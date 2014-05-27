@@ -1,15 +1,15 @@
 class Loan
-  constructor: (loan_info) ->
-    @amount             = +loan_info.amount
-    @grace_months       = +loan_info.grace_months
-    @number_of_payments = +loan_info.payments
-    @interest_rate      = +loan_info.interest_rate
+  constructor: (@schedule, @rate) ->
 
-  payments: ->
-    [1080]
+  netPresentValue: (amount, months) =>
+    annualDepreciation = 1 / (1 + @rate / 100.0)
+    amount * Math.pow(annualDepreciation, months/12.0)
 
   balances: ->
-    [1000, 0]
+    accumulator = 0
+    accumulator += payment for payment in @schedule
 
-  totalInterest: ->
-    80
+  cost: ->
+    values = (@netPresentValue amount, month for amount, month in @schedule)
+    values.reduce (sum, amount) -> sum + amount
+
