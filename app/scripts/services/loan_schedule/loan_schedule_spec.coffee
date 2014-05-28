@@ -53,3 +53,21 @@ describe paymentSchedule, ->
         -3000
         -3000
       ]
+
+  describe 'a loan in installments, with a 2-month grace period and a 2-month term', ->
+    beforeEach ->
+      setSchedule
+        amount: "9000"
+        graceMonths: "2"
+        payments: "2"
+        interestRate: "8.0"
+        installments: true
+
+    it 'calculates the balances', ->
+      expect(schedule).toEqual [
+        3000
+        3000
+        3000
+        -4500
+        -4500
+      ]
