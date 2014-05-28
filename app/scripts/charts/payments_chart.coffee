@@ -5,7 +5,7 @@ d3.chart 'PaymentsChart',
     @base.classed 'payments-chart', true
 
     # default height and width
-    @w = @base.attr('width') || parseInt(@base.style('width')) || 600
+    @w = @base.attr('width')  || parseInt(@base.style('width'))  || 600
     @h = @base.attr('height') || parseInt(@base.style('height')) || 400
 
     # chart margins to account for labels.
