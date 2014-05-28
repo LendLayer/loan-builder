@@ -3,4 +3,5 @@ angular.module('insightFellowsApp', [
   'ngResource'
   'ngSanitize'
   'uiSlider'
+  'ui.bootstrap'
 ])

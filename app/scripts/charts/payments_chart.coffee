@@ -51,7 +51,6 @@ d3.chart 'PaymentsChart',
       .attr('height', @h - @margins.bottom - @margins.top)
       .attr('transform', "translate(#{@margins.left-1},#{@margins.top})")
 
-    debugger
     @areas.plot = @base.append('g')
       .classed('plot', true)
       .attr('width', @w - @margins.left)
