@@ -1,10 +1,10 @@
 angular.module('insightFellowsApp')
   .controller('MainCtrl', ($scope) ->
     $scope.loanInfo =
-      amount: 2000
-      grace_months: 4
-      payments: 8
-      interest_rate: 6.5
+      amount: '2000'
+      graceMonths: '4'
+      payments: '8'
+      interestRate: '6.5'
 
     $scope.$watchCollection 'loanInfo', (loanInfo) ->
       schedule = paymentSchedule loanInfo
