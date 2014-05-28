@@ -13,6 +13,9 @@ describe Loan, ->
     it 'calculates the total cost', ->
       expect(loan.cost()).toBeCloseTo 1000 * (1 - Math.pow 1/1.08, 1.0/12), 6
 
+    it 'calcuates the max monthly payment', ->
+      expect(loan.maxMonthlyPayment()).toEqual 1000
+
   describe 'a loan spread over 4 months', ->
     schedule = [6000, -1500, -1500, -1500, -1500]
     rate = 8.0
@@ -30,6 +33,9 @@ describe Loan, ->
     it 'calculates the total cost', ->
       expect(loan.cost()).toBeCloseTo 95.28, 2
 
+    it 'calcuates the max monthly payment', ->
+      expect(loan.maxMonthlyPayment()).toEqual 1500
+
   describe 'a loan with a grace period', ->
     schedule = [1000, 0, 0, -500, -500]
     rate = 10.0
@@ -43,6 +49,9 @@ describe Loan, ->
         500
         0
       ]
+
+    it 'calcuates the max monthly payment', ->
+      expect(loan.maxMonthlyPayment()).toEqual 500
 
     it 'calculates the total cost', ->
       expect(loan.cost()).toBeCloseTo 27.408, 3

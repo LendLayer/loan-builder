@@ -13,3 +13,6 @@ class Loan
     values = (@netPresentValue amount, month for amount, month in @schedule)
     values.reduce (sum, amount) -> sum + amount
 
+  maxMonthlyPayment: ->
+    -Math.min @schedule...
+
