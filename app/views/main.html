@@ -12,6 +12,19 @@
 <!-- </div> -->
 
 <div class="row marketing">
+  <h1>Hey guys!</h1>
+  <p>
+    Based on our conversation last week, here's a little loan calculator that gives you an idea of what I think we can offer. With interest rates, ideally we'd start off a bit more cautiously, and then over 6 months as we get more data, improve our models and diversify properly, we can be more aggressive and further reduce interest rates on a student-by-student basis.
+  </p>
+
+  <h3>The Model</h3>
+  <p>Essentially we can put together whatever package works for the fellows and for Insight, and this is just a simple model to get us started. In this model, the interest is paid up-front by Insight and is calculated by summing up the net present values of all the future loan payments (positive and negative). If you're interested, the code is <a href="https://github.com/LendLayer/loan-builder/blob/master/app/scripts/services/loan/loan.coffee">here</a>.</p>
+  <p>
+
+  <h3>Interest Rates</h3>
+  <p>Assuming Insight were to guarantee some proportion, say the first 20%, of students that might default, you might think of our risk as the risk that up to 20% of students can't pay <i>and</i> Insight can't pay, plus the risk that the rest of the 80% can't pay. In this scenario, we'd ideally sit at around 6% interest.</p>
+  <p>If we took on the risk from the students, until we got good at this and had some hard data, I'd rather stay a bit conservative for the first cohort so we don't get wiped off the planet. Ideally we'd be in the 16% APR range. My instinct is that less than 10% of students would default, but there's a hefty downside for us if more than that do, because we'd report small or negative earnings on our first fund, and I guess most of our future investment would dry up.</p>
+
   <payments-chart loan="loan"></payments-chart>
 
   <table class="table table-bordered">
@@ -36,7 +49,7 @@
   </table>
   <h3>Cost to Insight: {{loan.cost() | currency : $}}</h3>
   <button type="button" ng-class="{'btn-success': loanInfo.installments}" class="btn" ng-model="loanInfo.installments" btn-checkbox>
-    Pay in installments
+    Get paid in installments
   </button>
   <p>Amount</p>
   <slider floor="1000" ceiling="10000" step="1" precision="0" ng-model="loanInfo.amount"></slider>
