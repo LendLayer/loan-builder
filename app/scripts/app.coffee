@@ -4,4 +4,5 @@ angular.module('insightFellowsApp', [
   'ngSanitize'
   'uiSlider'
   'ui.bootstrap'
+  'charts'
 ])
