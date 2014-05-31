@@ -1,4 +1,4 @@
-angular.module('insightFellowsApp')
+angular.module('llRisk')
   .directive('paymentsChart', ->
     restrict: 'E'
     replace: true
