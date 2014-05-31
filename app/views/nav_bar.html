@@ -1,8 +1,6 @@
-<div class="header">
+<div class="header" ng-controller="NavBarCtrl">
   <ul class="nav nav-pills pull-right">
-    <li class="active"><a ui-sref="home">Home</a></li>
-    <li><a ui-sref="model">Model</a></li>
-    <li><a ui-sref="contact">Contact</a></li>
+    <li ng-repeat='state in states' ng-class="{active: $state.includes(state)}"><a ui-sref="{{state}}">{{state | titlecase}}</a></li>
   </ul>
   <h1 class="text-muted">Insight Loan Builder</h1>
 </div>

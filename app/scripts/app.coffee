@@ -7,4 +7,5 @@ angular.module('llRisk', [
   'ui.bootstrap'
   'charts'
   'llRisk.states'
+  'llRisk.filters'
 ])
