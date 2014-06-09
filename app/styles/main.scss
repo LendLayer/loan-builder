@@ -89,3 +89,19 @@ body {
         border-bottom: 0;
     }
 }
+
+.sliders {
+    label {
+        display: inline-block;
+        width: 25%
+    }
+    slider {
+        display: inline-block;
+        width: 74%;
+        margin: 25px 0;
+    }
+}
+
+.spreadsheet {
+    margin: 0 50px;
+}

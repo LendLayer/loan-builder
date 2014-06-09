@@ -4,21 +4,21 @@
 
 <div class="row marketing">
   <p>Blurb based on insight template...</p>
-  <payments-chart loan="loan" height="400px" width="700px"></payments-chart>
-
-    <nvd3-stacked-area-chart
-      data="studentChartData"
-      id="student-default-chart"
-      showXAxis="true"
-      showYAxis="true"
-      width="550"
-      height="350"
-      ydomain="[0,1]"
-      objectequality="true">
-      <svg></svg>
-    </nvd3-stacked-area-chart>
+  <nvd3-stacked-area-chart
+    data="studentChartData"
+    id="student-default-chart"
+    showXAxis="true"
+    showYAxis="true"
+    width="700"
+    height="250"
+    ydomain="[0,1]"
+    objectequality="true">
+    <svg></svg>
+  </nvd3-stacked-area-chart>
 
   <student-default-rates></student-default-rates>
+
+  <payments-chart loan="loan" height="400px" width="700px"></payments-chart>
 
   <table class="table table-bordered">
     <thead>
@@ -45,14 +45,17 @@
     Get paid in installments
   </button>
   <span>This button reduces the cost and mitigates 'Virgil Risk'</span>
-  <p>Amount</p>
-  <slider floor="1000" ceiling="10000" step="1" precision="0" ng-model="loanInfo.amount"></slider>
-  <p>Grace period</p>
-  <slider floor="0" ceiling="12" step="1" precision="0" ng-model="loanInfo.graceMonths"></slider>
-  <p>Number of monthly payments</p>
-  <slider floor="1" ceiling="24" step="1" precision="0" ng-model="loanInfo.payments"></slider>
-  <p>Interest rate</p>
-  <slider floor="0.0" ceiling="20.0" step="0.1" precision="1" ng-model="loanInfo.interestRate"></slider>
+
+  <div class="sliders">
+    <label>Amount</label>
+    <slider floor="1000" ceiling="10000" step="1" precision="0" ng-model="loanInfo.amount"></slider>
+    <label>Grace period</label>
+    <slider floor="0" ceiling="12" step="1" precision="0" ng-model="loanInfo.graceMonths"></slider>
+    <label>Number of monthly payments</label>
+    <slider floor="1" ceiling="24" step="1" precision="0" ng-model="loanInfo.payments"></slider>
+    <label>Interest rate</label>
+    <slider floor="0.0" ceiling="20.0" step="0.1" precision="1" ng-model="loanInfo.interestRate"></slider>
+  </div>
 
 </div>
 
