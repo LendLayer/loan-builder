@@ -5,6 +5,7 @@ angular.module('llRisk', [
   'uiSlider'
   'ui.router'
   'ui.bootstrap'
+  'ngGrid'
   'charts'
   'llRisk.states'
   'llRisk.filters'
