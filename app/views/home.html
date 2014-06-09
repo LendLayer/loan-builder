@@ -6,6 +6,18 @@
   <p>Blurb based on insight template...</p>
   <payments-chart loan="loan" height="400px" width="700px"></payments-chart>
 
+    <nvd3-stacked-area-chart
+      data="studentChartData"
+      id="student-default-chart"
+      showXAxis="true"
+      showYAxis="true"
+      width="550"
+      height="350"
+      ydomain="[0,1]"
+      objectequality="true">
+      <svg></svg>
+    </nvd3-stacked-area-chart>
+
   <student-default-rates></student-default-rates>
 
   <table class="table table-bordered">

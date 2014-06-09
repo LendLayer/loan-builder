@@ -7,6 +7,7 @@ angular.module('llRisk', [
   'ui.bootstrap'
   'ngGrid'
   'charts'
+  'nvd3ChartDirectives'
   'llRisk.states'
   'llRisk.filters'
 ])

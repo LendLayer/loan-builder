@@ -26,19 +26,6 @@ angular.module('llRisk')
             { field: '100', displayName: '100%', width: "*", resizable: false}
           ]
 
-        scope.studentDefaultRates = [
-          '10': 0.2
-          '20': 0.26
-          '30': 0.22
-          '40': 0.12
-          '50': 0.08
-          '60': 0.03
-          '70': 0.01
-          '80': 0.0
-          '90': 0.0
-          '100': 0.0
-        ]
-
         setZeroDefaultProbability = (newRates, oldRates, scope) ->
           # calculate the chance of no defaults from all other defaults
           zeroDefaultProbability = 1
