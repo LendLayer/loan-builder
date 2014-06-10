@@ -22,6 +22,12 @@ angular.module('llRisk')
       '90': 0.0
       '100': 0.0
     ]
+
+    $scope.meanDefault = ->
+      rates = $scope.studentDefaultRates[0]
+      sum = 0
+      sum += (+rate)*p for rate, p of rates
+      sum 
   
     $scope.studentChartData = [{key: "Student Default Rates"}]
     setChartData = (newRates, oldRates, scope) ->
