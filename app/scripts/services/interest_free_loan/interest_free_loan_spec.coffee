@@ -1,8 +1,8 @@
-describe Loan, ->
+describe InterestFreeLoan, ->
   describe 'a loan that is paid back in full after 1 month', ->
     schedule = [1000, -1000]
     rate = 8.0
-    loan = new Loan schedule, rate
+    loan = new InterestFreeLoan schedule, rate
 
     it 'calculates the balances', ->
       expect(loan.balances()).toEqual [
@@ -19,7 +19,7 @@ describe Loan, ->
   describe 'a loan spread over 4 months', ->
     schedule = [6000, -1500, -1500, -1500, -1500]
     rate = 8.0
-    loan = new Loan schedule, rate
+    loan = new InterestFreeLoan schedule, rate
 
     it 'calculates the balances', ->
       expect(loan.balances()).toEqual [
@@ -39,7 +39,7 @@ describe Loan, ->
   describe 'a loan with a grace period', ->
     schedule = [1000, 0, 0, -500, -500]
     rate = 10.0
-    loan = new Loan schedule, rate
+    loan = new InterestFreeLoan schedule, rate
 
     it 'calculates the balances', ->
       expect(loan.balances()).toEqual [

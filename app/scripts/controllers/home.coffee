@@ -8,7 +8,7 @@ angular.module('llRisk')
 
     $scope.$watchCollection 'loanInfo', (loanInfo) ->
       schedule = paymentSchedule loanInfo
-      $scope.loan = new Loan schedule, loanInfo.interestRate
+      $scope.loan = new InterestFreeLoan schedule, loanInfo.interestRate
 
     $scope.studentDefaultRates = [
       '10': 0.2

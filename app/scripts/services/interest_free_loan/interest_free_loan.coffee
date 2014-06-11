@@ -1,4 +1,4 @@
-class Loan
+class InterestFreeLoan
   constructor: (@schedule, @rate) ->
 
   netPresentValue: (amount, months) =>
