@@ -9,25 +9,33 @@
     id="student-default-chart"
     showXAxis="true"
     showYAxis="true"
-    width="700"
+    width="600"
     height="250"
     ydomain="[0,1]"
     objectequality="true">
-    <svg></svg>
   </nvd3-stacked-area-chart>
 
   <nvd3-discrete-bar-chart
     data="schoolChartData"
-    showXAxis="true"
-    showYAxis="true"
+    id="school-default-chart"
     showValues="true"
-    showLegend="true">
+    yaxisdomain="[0,1]"
+    transitionduration="0"
+    objectequality="true"
+    width="150"
+    height="250"
+    >
   </nvd3-discrete-bar-chart>
 
+  <p>Click to edit the probability boxes below (apart from the '0%' probability):</p>
   <student-default-rates></student-default-rates>
   <p>
     Expected default: {{meanDefault()}}%
   </p>
+  <div class="sliders">
+    <label>School default probability</label>
+    <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolDefaultProbability"></slider>
+  </div>
 
   <payments-chart loan="loan" height="400px" width="700px"></payments-chart>
 

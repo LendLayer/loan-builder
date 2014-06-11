@@ -29,12 +29,22 @@ angular.module('llRisk')
       sum += (+rate)*p for rate, p of rates
       sum 
   
-    $scope.studentChartData = [{key: "Student Default Rates"}]
+    $scope.studentChartData = [key: "Student Default Rates"]
     setChartData = (newRates, oldRates, scope) ->
       values = ([+rate, probability] for rate, probability of newRates[0])
       $scope.studentChartData[0].values = values
 
     $scope.$watch 'studentDefaultRates', setChartData, true
+
+    $scope.schoolDefaultProbability = 0.15
+
+    $scope.schoolChartData = [
+      key: "School Default Probability"
+      values: [["p", $scope.schoolDefaultProbability]]
+    ]
+
+    $scope.$watch 'schoolDefaultProbability', (newProbability) ->
+      $scope.schoolChartData[0].values[0][1] = +newProbability
   )
   .controller('ModelCtrl', ($scope) ->
   )
