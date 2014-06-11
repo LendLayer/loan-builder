@@ -59,7 +59,7 @@
       </tr>
     </tbody>
   </table>
-  <h3>Cost to Insight: {{loan.cost() | currency : $}}</h3>
+  <h3>Cost: {{loan.cost() | currency : $}}</h3>
   <button type="button" ng-class="{'btn-success': loanInfo.installments}" class="btn" ng-model="loanInfo.installments" btn-checkbox>
     Get paid in installments
   </button>
