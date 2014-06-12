@@ -36,4 +36,3 @@ class LoanWithInterest
       principal.push balances[i] - balances[i+1]
 
     principal
-

@@ -37,45 +37,23 @@
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolDefaultProbability"></slider>
   </div>
 
-  <payments-chart loan="loan" height="400px" width="700px"></payments-chart>
 
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Amount Borrowed</th>
-        <th>Grace Period</th>
-        <th>Payments</th>
-        <th>Interest Rate</th>
-        <th>Monthly</th>
+        <th>Net Investor Rate</th>
+        <th>Student APR</th>
+        <th>Total Interest Paid</th>
       </tr>
     </thead>
     <tbody>
       <tr class="info">
-        <td>{{loanInfo.amount | currency : $}}</td>
-        <td>{{loanInfo.graceMonths}} months</td>
-        <td>{{loanInfo.payments}}</td>
-        <td>{{loanInfo.interestRate}} %</td>
-        <td>{{loan.maxMonthlyPayment() | currency : $}}</td>
+        <td>{{netRate}}%</td>
+        <td>{{studentRate}}</td>
+        <td>{{loan.totalInterest() | currency : $}}</td>
       </tr>
     </tbody>
   </table>
-  <h3>Cost: {{loan.cost() | currency : $}}</h3>
-  <button type="button" ng-class="{'btn-success': loanInfo.installments}" class="btn" ng-model="loanInfo.installments" btn-checkbox>
-    Get paid in installments
-  </button>
-  <span>This button reduces the cost and mitigates 'Virgil Risk'</span>
-
-  <div class="sliders">
-    <label>Amount</label>
-    <slider floor="1000" ceiling="10000" step="1" precision="0" ng-model="loanInfo.amount"></slider>
-    <label>Grace period</label>
-    <slider floor="0" ceiling="12" step="1" precision="0" ng-model="loanInfo.graceMonths"></slider>
-    <label>Number of monthly payments</label>
-    <slider floor="1" ceiling="24" step="1" precision="0" ng-model="loanInfo.payments"></slider>
-    <label>Interest rate</label>
-    <slider floor="0.0" ceiling="20.0" step="0.1" precision="1" ng-model="loanInfo.interestRate"></slider>
-  </div>
-
 </div>
 
 <div class="footer">

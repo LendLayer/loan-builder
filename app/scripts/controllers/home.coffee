@@ -1,15 +1,5 @@
 angular.module('llRisk')
   .controller('HomeCtrl', ($scope) ->
-    $scope.loanInfo =
-      amount: '2000'
-      graceMonths: '4'
-      payments: '8'
-      interestRate: '6.5'
-
-    $scope.$watchCollection 'loanInfo', (loanInfo) ->
-      schedule = paymentSchedule loanInfo
-      $scope.loan = new InterestFreeLoan schedule, loanInfo.interestRate
-
     $scope.studentDefaultRates = [
       '10': 0.2
       '20': 0.26
@@ -27,8 +17,8 @@ angular.module('llRisk')
       rates = $scope.studentDefaultRates[0]
       sum = 0
       sum += (+rate)*p for rate, p of rates
-      sum 
-  
+      sum
+
     $scope.studentChartData = [key: "Student Default Rates"]
     setChartData = (newRates, oldRates, scope) ->
       values = ([+rate, probability] for rate, probability of newRates[0])

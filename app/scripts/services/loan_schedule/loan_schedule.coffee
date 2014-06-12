@@ -11,4 +11,3 @@ paymentSchedule = (info) ->
     schedule.push 0 for [0...graceMonths]
   schedule.push -amount / payments for [0...payments]
   schedule
-

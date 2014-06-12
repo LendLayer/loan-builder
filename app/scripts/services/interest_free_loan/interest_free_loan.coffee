@@ -15,4 +15,3 @@ class InterestFreeLoan
 
   maxMonthlyPayment: ->
     -Math.min @schedule...
-

@@ -9,5 +9,3 @@ angular.module('llRisk')
 
       $scope.$state = $state
   ])
-
-
