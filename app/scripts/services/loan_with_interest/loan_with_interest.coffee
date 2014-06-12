@@ -11,10 +11,16 @@ class LoanWithInterest
 
     balances
 
+  installmentAmount: (startingBalance) ->
+    monthlyRate_n = Math.pow @monthlyRate, @payments
+    startingBalance * monthlyRate_n * (@monthlyRate - 1) / (monthlyRate_n - 1)
+
   balances: ->
     balances = @graceBalances()
+    installment = @installmentAmount balances[balances.length - 1]
+
     for i in [0...@payments]
       [...,latest] = balances
-      balances.push latest * @monthlyRate - 1115 * @monthlyRate
+      balances.push latest * @monthlyRate - installment
 
     balances
