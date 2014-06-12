@@ -24,3 +24,16 @@ class LoanWithInterest
       balances.push latest * @monthlyRate - installment
 
     balances
+
+  interest: ->
+    balance * (@monthlyRate - 1) for balance in @balances()
+
+  principal: ->
+    balances = @balances()
+    principal = [-balances[0]] # first principal payment is the initial payment
+
+    for i in [0...balances.length-1]
+      principal.push balances[i] - balances[i+1]
+
+    principal
+
