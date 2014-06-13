@@ -5,11 +5,13 @@ angular.module('llRisk')
     scope:
       defaultRate: '='
       targetInterestRate: '@'
+      fee: '@'
     template:
       """<table class="table table-bordered interest-table">
         <thead>
           <tr>
             <th>Target Investor Rate</th>
+            <th>LendLayer Fee</th>
             <th>Expected Default</th>
             <th>Student APR</th>
           </tr>
@@ -17,6 +19,7 @@ angular.module('llRisk')
         <tbody>
           <tr class="info">
             <td>{{targetInterestRate}}%</td>
+            <td>{{fee}}%</td>
             <td>{{defaultRate | number : 2}}%</td>
             <td>{{studentRate() | number : 2}}%</td>
           </tr>
@@ -24,6 +27,7 @@ angular.module('llRisk')
       </table>"""
     link: (scope, iElem, iAttrs) ->
       scope.studentRate = ->
-        rate = (1 +scope.targetInterestRate/100) / (1 - scope.defaultRate/100)
+        netInterest = (+scope.targetInterestRate) + (+scope.fee)
+        rate = (1 + netInterest/100) / (1 - scope.defaultRate/100)
         (rate - 1) * 100
   )

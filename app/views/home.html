@@ -42,7 +42,7 @@
   </nvd3-discrete-bar-chart>
 
   <div class="sliders">
-    <label>School default probability</label>
+    <label>School default probability {{schoolDefaultProbability * 100 | number : 0}}%</label>
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolDefaultProbability"></slider>
   </div>
 
@@ -68,7 +68,7 @@
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
   </div>
 
-  <interest-table default-rate="expectedDefault()" target-interest-rate="7.0"></interest-table>
+  <interest-table default-rate="expectedDefault()" target-interest-rate="8.0" fee="1.0"></interest-table>
 
   <div>{{loan.totalInterest() | currency : $}}</div>
 </div>
