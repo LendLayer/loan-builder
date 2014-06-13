@@ -37,13 +37,14 @@ angular.module('llRisk')
     $scope.$watch 'schoolCoversFirst', setChartData
     $scope.$watch 'schoolSubsidy', setChartData
 
-    $scope.meanDefault = ->
-      lossWhenSchoolDefaults =
-      lossWhenSchoolPays =
-      rates = $scope.studentDefaultRates[0]
-      sum = 0
-      sum += (+rate)*p for rate, p of rates
-      sum
+    expectedDefault = (rates) ->
+      rates[0]?.values?.reduce ((acc, pair) ->  acc + pair[0] * pair[1]), 0
+
+    $scope.expectedDefault = ->
+      lossWhenSchoolDefaults = expectedDefault $scope.schoolDefaultsChartData
+      lossWhenSchoolPays     = expectedDefault $scope.schoolPaysChartData
+      lossWhenSchoolDefaults * $scope.schoolDefaultProbability +
+        lossWhenSchoolPays   * (1 - $scope.schoolDefaultProbability)
   )
   .controller('ModelCtrl', ($scope) ->
   )

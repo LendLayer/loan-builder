@@ -68,26 +68,9 @@
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
   </div>
 
-  <p>
-    Expected default: {{meanDefault()}}%
-  </p>
+  <interest-table default-rate="expectedDefault()" target-interest-rate="7.0"></interest-table>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Net Investor Rate</th>
-        <th>Student APR</th>
-        <th>Total Interest Paid</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="info">
-        <td>{{netRate}}%</td>
-        <td>{{studentRate}}</td>
-        <td>{{loan.totalInterest() | currency : $}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div>{{loan.totalInterest() | currency : $}}</div>
 </div>
 
 <div class="footer">
