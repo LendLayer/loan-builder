@@ -62,9 +62,9 @@
   </nvd3-stacked-area-chart>
 
   <div class="sliders">
-    <label>School covers first x% of defaults</label>
+    <label>School covers first {{schoolCoversFirst * 100 | number : 0}}% of defaults</label>
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolCoversFirst"></slider>
-    <label>School shares x% of remaining defaults</label>
+    <label>School shares {{schoolSubsidy * 100 | number : 0}}% of remaining defaults</label>
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
   </div>
 

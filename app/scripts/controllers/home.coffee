@@ -1,21 +1,21 @@
 angular.module('llRisk')
   .controller('HomeCtrl', ($scope) ->
     $scope.studentDefaultRates = [
-      '10': 0.2
-      '20': 0.26
-      '30': 0.22
-      '40': 0.12
+      '10': 0.1
+      '20': 0.17
+      '30': 0.27
+      '40': 0.24
       '50': 0.08
-      '60': 0.03
-      '70': 0.01
+      '60': 0.05
+      '70': 0.02
       '80': 0.0
       '90': 0.0
       '100': 0.0
     ]
 
     $scope.schoolDefaultProbability = 0.15
-    $scope.schoolCoversFirst = 0.15
-    $scope.schoolSubsidy = 0.15
+    $scope.schoolCoversFirst = 0.5
+    $scope.schoolSubsidy = 0.0
 
     $scope.studentChartData        = [key: "Student Default Rates"]
     $scope.schoolChartData         = [key: "School Default Probability"]
