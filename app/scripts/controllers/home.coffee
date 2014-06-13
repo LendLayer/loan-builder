@@ -31,6 +31,12 @@ angular.module('llRisk')
       $scope.schoolChartData[0].values         = [["p", $scope.schoolDefaultProbability]]
       $scope.schoolDefaultsChartData[0].values = ([+rate, probability*$scope.schoolDefaultProbability] for rate, probability of rates)
       $scope.schoolPaysChartData[0].values     = ([subsidise(rate), probability*(1-$scope.schoolDefaultProbability)] for rate, probability of rates)
+      $scope.expectedStudentDefault = expectedDefault $scope.studentChartData
+
+      lossWhenSchoolDefaults = expectedDefault $scope.schoolDefaultsChartData
+      lossWhenSchoolPays     = expectedDefault $scope.schoolPaysChartData
+      $scope.expectedDefault = lossWhenSchoolDefaults + lossWhenSchoolPays
+
 
     $scope.$watch 'studentDefaultRates', setChartData, true
     $scope.$watch 'schoolDefaultProbability', setChartData
@@ -40,10 +46,6 @@ angular.module('llRisk')
     expectedDefault = (rates) ->
       rates[0]?.values?.reduce ((acc, pair) ->  acc + pair[0] * pair[1]), 0
 
-    $scope.expectedDefault = ->
-      lossWhenSchoolDefaults = expectedDefault $scope.schoolDefaultsChartData
-      lossWhenSchoolPays     = expectedDefault $scope.schoolPaysChartData
-      lossWhenSchoolDefaults + lossWhenSchoolPays
   )
   .controller('ModelCtrl', ($scope) ->
   )

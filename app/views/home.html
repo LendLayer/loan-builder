@@ -13,6 +13,7 @@
     ydomain="[0,1]"
     objectequality="true">
   </nvd3-stacked-area-chart>
+  <p><b>Expected student default rate: {{expectedStudentDefault | number : 2}}</b></p>
   <p>Click to edit the probability boxes below (apart from the '0%' probability):</p>
   <student-default-rates></student-default-rates>
 
@@ -68,7 +69,7 @@
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
   </div>
 
-  <interest-table default-rate="expectedDefault()" target-interest-rate="8.0" fee="1.0"></interest-table>
+  <interest-table default-rate="expectedDefault" target-interest-rate="8.0" fee="1.0"></interest-table>
 
   <div>{{loan.totalInterest() | currency : $}}</div>
 </div>
