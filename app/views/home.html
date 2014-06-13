@@ -1,9 +1,8 @@
 <!-- <div class="jumbotron"> -->
 <!--   <h1>Loan Plan Builder</h1> -->
 <!-- </div> -->
-
 <div class="row marketing">
-  <p>Blurb based on insight template...</p>
+  <h2>Student Defaults</h2>
   <nvd3-stacked-area-chart
     data="studentChartData"
     id="student-default-chart"
@@ -14,10 +13,25 @@
     ydomain="[0,1]"
     objectequality="true">
   </nvd3-stacked-area-chart>
+  <p>Click to edit the probability boxes below (apart from the '0%' probability):</p>
+  <student-default-rates></student-default-rates>
+
+  <h2>Defaults when {{schoolName}} Defaults</h2>
+  <nvd3-stacked-area-chart
+    data="schoolDefaultsChartData"
+    id="school-defaults-chart"
+    showXAxis="true"
+    showYAxis="true"
+    width="600"
+    transitionduration="0"
+    height="250"
+    ydomain="[0,1]"
+    objectequality="true">
+  </nvd3-stacked-area-chart>
 
   <nvd3-discrete-bar-chart
     data="schoolChartData"
-    id="school-default-chart"
+    id="school-default-probability-chart"
     showValues="true"
     yaxisdomain="[0,1]"
     transitionduration="0"
@@ -27,16 +41,36 @@
     >
   </nvd3-discrete-bar-chart>
 
-  <p>Click to edit the probability boxes below (apart from the '0%' probability):</p>
-  <student-default-rates></student-default-rates>
-  <p>
-    Expected default: {{meanDefault()}}%
-  </p>
   <div class="sliders">
     <label>School default probability</label>
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolDefaultProbability"></slider>
   </div>
 
+  <h2>Defaults when {{schoolName}} Doesn't Default</h2>
+
+  <nvd3-stacked-area-chart
+    data="schoolPaysChartData"
+    id="school-pays-chart"
+    showXAxis="true"
+    showYAxis="true"
+    transitionduration="0"
+    width="600"
+    height="250"
+    xdomain="[0,100]"
+    ydomain="[0,1]"
+    objectequality="true">
+  </nvd3-stacked-area-chart>
+
+  <div class="sliders">
+    <label>School covers first x% of defaults</label>
+    <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolCoversFirst"></slider>
+    <label>School shares x% of remaining defaults</label>
+    <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
+  </div>
+
+  <p>
+    Expected default: {{meanDefault()}}%
+  </p>
 
   <table class="table table-bordered">
     <thead>
