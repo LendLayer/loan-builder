@@ -43,8 +43,7 @@ angular.module('llRisk')
     $scope.expectedDefault = ->
       lossWhenSchoolDefaults = expectedDefault $scope.schoolDefaultsChartData
       lossWhenSchoolPays     = expectedDefault $scope.schoolPaysChartData
-      lossWhenSchoolDefaults * $scope.schoolDefaultProbability +
-        lossWhenSchoolPays   * (1 - $scope.schoolDefaultProbability)
+      lossWhenSchoolDefaults + lossWhenSchoolPays
   )
   .controller('ModelCtrl', ($scope) ->
   )
