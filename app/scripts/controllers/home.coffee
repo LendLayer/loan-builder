@@ -49,7 +49,7 @@ angular.module('llRisk')
     $scope.fee = 1.0
 
     # reactive $scope.studentRate
-    $scope.$watch 'defaultRate', ->
+    $scope.$watch 'expectedDefault', ->
       netInterest = (+$scope.targetInterestRate) + (+$scope.fee)
       rate = (1 + netInterest/100) / (1 - $scope.expectedDefault/100)
       $scope.studentRate = (rate - 1) * 100
