@@ -36,4 +36,5 @@ class LoanWithInterest
     @balances = balances()
     @interest = (balance * (@monthlyRate - 1) for balance in @balances)
     @principal = principal()
+    @totalInterest = @interest.reduce ((acc, d) -> acc + d), 0
 

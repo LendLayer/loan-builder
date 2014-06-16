@@ -77,6 +77,7 @@
 
 <div class="row marketing" ng-controller="RepaymentsCtrl">
   <h1>Repayment Schedule</h1>
+  <h2>Monthly Loan Balance</h2>
   <nvd3-multi-bar-chart
     data="balancesChartData"
     id="balances-chart"
@@ -92,6 +93,7 @@
     >
   </nvd3-multi-bar-chart>
 
+  <h2>Monthly Principal and Interest Payments</h2>
   <nvd3-multi-bar-chart
     data="paymentsChartData"
     id="payments-chart"
@@ -120,6 +122,7 @@
     <slider floor="1" ceiling="24" step="1" precision="0" ng-model="payments"></slider>
   </div>
 
+  <p>The student will pay a total of {{loan.totalInterest | currency : $}} in interest over the life of the loan.</p>
 </div>
 
 <div class="footer">
