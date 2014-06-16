@@ -3,36 +3,37 @@ class LoanWithInterest
     @annualRate = (1 + rate/100)
     @monthlyRate = Math.pow @annualRate, 1/12
 
-  graceBalances: ->
-    balances = [@amount]
-    for i in [0...@gracePayments]
-      [...,latest] = balances
-      balances.push latest * @monthlyRate - @gracePaymentAmount
+    installmentAmount = (startingBalance) =>
+      monthlyRate_n = Math.pow @monthlyRate, @payments
+      startingBalance * monthlyRate_n * (@monthlyRate - 1) / (monthlyRate_n - 1)
 
-    balances
+    balances = =>
+      # initial balance
+      balances = [@amount]
 
-  installmentAmount: (startingBalance) ->
-    monthlyRate_n = Math.pow @monthlyRate, @payments
-    startingBalance * monthlyRate_n * (@monthlyRate - 1) / (monthlyRate_n - 1)
+      # grace balances
+      for i in [0...@gracePayments]
+        [...,latest] = balances
+        balances.push latest * @monthlyRate - @gracePaymentAmount
 
-  balances: ->
-    balances = @graceBalances()
-    installment = @installmentAmount balances[balances.length - 1]
+      # downpayment balances
+      installment = installmentAmount balances[balances.length - 1]
 
-    for i in [0...@payments]
-      [...,latest] = balances
-      balances.push latest * @monthlyRate - installment
+      for i in [0...@payments]
+        [...,latest] = balances
+        balances.push latest * @monthlyRate - installment
 
-    balances
+      balances
 
-  interest: ->
-    balance * (@monthlyRate - 1) for balance in @balances()
+    principal = =>
+      principal = [-@balances[0]] # first principal payment is the initial payment
 
-  principal: ->
-    balances = @balances()
-    principal = [-balances[0]] # first principal payment is the initial payment
+      for i in [0...@balances.length-1]
+        principal.push @balances[i] - @balances[i+1]
 
-    for i in [0...balances.length-1]
-      principal.push balances[i] - balances[i+1]
+      principal
 
-    principal
+    @balances = balances()
+    @interest = (balance * (@monthlyRate - 1) for balance in @balances)
+    @principal = principal()
+
