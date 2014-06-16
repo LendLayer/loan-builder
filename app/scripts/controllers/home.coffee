@@ -18,7 +18,7 @@ angular.module('llRisk')
     $scope.schoolSubsidy = 0.0
 
     $scope.studentChartData        = [key: "Student Default Rates"]
-    $scope.schoolChartData         = [key: "School Default Probability"]
+    $scope.schoolChartData         = [key: "School Default Probability", values: [["p", $scope.schoolDefaultProbability]]]
     $scope.schoolDefaultsChartData = [key: "Default Rates when School Defaults"]
     $scope.schoolPaysChartData     = [key: "Default Rates when School Pays"]
 
@@ -28,7 +28,7 @@ angular.module('llRisk')
     setChartData = ->
       rates = $scope.studentDefaultRates[0]
       $scope.studentChartData[0].values        = ([+rate, probability] for rate, probability of rates)
-      $scope.schoolChartData[0].values         = [["p", $scope.schoolDefaultProbability]]
+      $scope.schoolChartData[0].values[0][1]   = $scope.schoolDefaultProbability
       $scope.schoolDefaultsChartData[0].values = ([+rate, probability*$scope.schoolDefaultProbability] for rate, probability of rates)
       $scope.schoolPaysChartData[0].values     = ([subsidise(rate), probability*(1-$scope.schoolDefaultProbability)] for rate, probability of rates)
       $scope.expectedStudentDefault = expectedDefault $scope.studentChartData
@@ -36,7 +36,6 @@ angular.module('llRisk')
       lossWhenSchoolDefaults = expectedDefault $scope.schoolDefaultsChartData
       lossWhenSchoolPays     = expectedDefault $scope.schoolPaysChartData
       $scope.expectedDefault = lossWhenSchoolDefaults + lossWhenSchoolPays
-
 
     $scope.$watch 'studentDefaultRates', setChartData, true
     $scope.$watch 'schoolDefaultProbability', setChartData
@@ -46,6 +45,14 @@ angular.module('llRisk')
     expectedDefault = (rates) ->
       rates[0]?.values?.reduce ((acc, pair) ->  acc + pair[0] * pair[1]), 0
 
+    $scope.targetInterestRate = 8.0
+    $scope.fee = 1.0
+
+    # reactive $scope.studentRate
+    $scope.$watch 'defaultRate', ->
+      netInterest = (+$scope.targetInterestRate) + (+$scope.fee)
+      rate = (1 + netInterest/100) / (1 - $scope.expectedDefault/100)
+      $scope.studentRate = (rate - 1) * 100
   )
   .controller('ModelCtrl', ($scope) ->
   )

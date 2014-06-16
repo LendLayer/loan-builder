@@ -2,6 +2,7 @@
 <!--   <h1>Loan Plan Builder</h1> -->
 <!-- </div> -->
 <div class="row marketing">
+  <h1>Interest Rates</h1>
   <h2>Student Defaults</h2>
   <nvd3-stacked-area-chart
     data="studentChartData"
@@ -69,9 +70,54 @@
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
   </div>
 
-  <interest-table default-rate="expectedDefault" target-interest-rate="8.0" fee="1.0"></interest-table>
+  <interest-table></interest-table>
 
   <div>{{loan.totalInterest() | currency : $}}</div>
+</div>
+
+<div class="row marketing" ng-controller="RepaymentsCtrl">
+  <h1>Repayment Schedule</h1>
+  <nvd3-multi-bar-chart
+    data="balancesChartData"
+    id="balances-chart"
+    tooltips="false"
+    showvalues="true"
+    showxaxis="true"
+    showyaxis="true"
+    transitionduration="0"
+    delay="0"
+    width="750"
+    height="250"
+    objectequality="true"
+    >
+  </nvd3-multi-bar-chart>
+
+  <nvd3-multi-bar-chart
+    data="interestChartData"
+    id="interest-chart"
+    tooltips="false"
+    showvalues="true"
+    showxaxis="true"
+    showyaxis="true"
+    transitionduration="0"
+    delay="0"
+    width="750"
+    height="250"
+    objectequality="true"
+    >
+  </nvd3-multi-bar-chart>
+
+  <div class="sliders">
+    <label>Student borrows {{loanAmount | currency : $}}</label>
+    <slider floor="1000" ceiling="10000" step="100" precision="0" ng-model="loanAmount"></slider>
+    <label>{{gracePayments}} grace payments</label>
+    <slider floor="0" ceiling="6" step="1" precision="0" ng-model="gracePayments"></slider>
+    <label>of {{gracePaymentAmount | currency : $}}</label>
+    <slider floor="0" ceiling="100" step="1" precision="0" ng-model="gracePaymentAmount"></slider>
+    <label>followed by {{payments}} payments of {{loan.installment | currency : $}}</label>
+    <slider floor="1" ceiling="24" step="1" precision="0" ng-model="payments"></slider>
+  </div>
+
 </div>
 
 <div class="footer">

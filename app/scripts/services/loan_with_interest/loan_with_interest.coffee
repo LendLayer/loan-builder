@@ -17,11 +17,11 @@ class LoanWithInterest
         balances.push latest * @monthlyRate - @gracePaymentAmount
 
       # downpayment balances
-      installment = installmentAmount balances[balances.length - 1]
+      @installment = installmentAmount balances[balances.length - 1]
 
       for i in [0...@payments]
         [...,latest] = balances
-        balances.push latest * @monthlyRate - installment
+        balances.push latest * @monthlyRate - @installment
 
       balances
 
