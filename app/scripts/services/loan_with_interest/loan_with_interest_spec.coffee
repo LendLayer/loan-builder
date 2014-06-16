@@ -1,10 +1,10 @@
 describe LoanWithInterest, ->
   describe 'a 12-month loan paid back in one lump sum', ->
-    amount = 1000
-    rate = 11.5
-    graceMonths = 12
-    gracePayment = 0
-    payments = 1
+    amount = "1000"
+    rate = "11.5"
+    graceMonths = "12"
+    gracePayment = "0"
+    payments = "1"
     loan = new LoanWithInterest amount, rate, graceMonths, gracePayment, payments
 
     it 'is 14 months long', ->
@@ -28,11 +28,11 @@ describe LoanWithInterest, ->
       expect(loan.principal).toEqual correctPrincipal
 
   describe 'a loan with grace payments and normal payments', ->
-    amount = 500
-    rate = 9.0
-    graceMonths = 2
-    gracePayment = 10
-    payments = 4
+    amount = "500"
+    rate = "9.0"
+    graceMonths = "2"
+    gracePayment = "10"
+    payments = "4"
     loan = new LoanWithInterest amount, rate, graceMonths, gracePayment, payments
 
     it 'is 14 months long', ->
