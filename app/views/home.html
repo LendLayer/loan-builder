@@ -3,7 +3,24 @@
 <!-- </div> -->
 <div class="row marketing">
   <h1>Interest Rates</h1>
+  <p>
+  We've put together a simple model to calculate the interest rates we can offer to students. It is based on 3 things:
+  </p>
+
+  <ol>
+    <li>the net return we need to offer lenders in order to source capital,</li>
+    <li>our fee,</li>
+    <li>how much we expect to lose from students not being able to repay their loan.</li>
+  </ol>
+
+  <p>
+    A number of schools have told us that they are a bit in the dark about how the last of these 3 components is estimated, so I built a little app to visualize how we're calculating rates and to show how we can work together to reduce them for the students.
+  </p>
+  
   <h2>Student Defaults</h2>
+  <p>
+  In the student defaults distribution below, the x-axis represents the percentage of dollars that aren't paid back by a particular cohort of students, and the y-axis represents the probability of seeing that default percentage. So, for example, in the model below there is a {{ studentDefaultRates[0]['30'] * 100}}% chance that around 30% of the total dollars from a particular cohort won't be paid back.
+  </p>
   <nvd3-stacked-area-chart
     data="studentChartData"
     id="student-default-chart"
@@ -14,11 +31,26 @@
     ydomain="[0,1]"
     objectequality="true">
   </nvd3-stacked-area-chart>
-  <p><b>Expected student default rate: {{expectedStudentDefault | number : 2}}%.</b></p>
-  <p>Click to edit the probability boxes below (apart from the '0%' probability):</p>
+  <p>We've estimated the students' default distribution based on the data you provided us with. We have to be conservative for the first cohort, and you can adjust the percentages yourself to see how as the students successfully repay, and the distribution moves towards the left, the interest rates are lowered. Just click to edit the probability boxes below (apart from the '0%' probability, which is calculated from the rest of the boxes):</p>
   <student-default-rates></student-default-rates>
+  <h4><b>Expected (mean) student default rate: {{expectedStudentDefault | number : 2}}%.</b></h4>
 
-  <h2>Defaults when {{schoolName}} Defaults</h2>
+  <h2>School Defaults</h2>
+  <p>
+  As with any business, there is a chance that something goes wrong. Perhaps <a href="http://pando.com/2014/02/03/last-week-in-fear-mongering-no-the-state-isnt-shutting-down-coding-bootcamps/">the regulatory environment changes</a>, or there is a sudden collapse of demand in employment, and the good folk at {{schoolName}} aren't able to cover the agreed share of student defaults. We've encorporated this risk as a 'school default probability'. This will reduce as we work together, and you can see this effect by adjusting the slider below.
+  </p>
+
+  <div class="sliders">
+    <label>School default probability {{schoolDefaultProbability * 100 | number : 0}}%</label>
+    <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolDefaultProbability"></slider>
+  </div>
+
+  <h3>Losses when {{schoolName}} Defaults</h3>
+
+  <p>
+  Below is a graph of the probability distribution of different student default levels AND {{schoolName}} defaulting. You can think of it as the contribution to the risk in the case that {{schoolName}} defaults.
+  </p>
+
   <nvd3-stacked-area-chart
     data="schoolDefaultsChartData"
     id="school-defaults-chart"
@@ -43,12 +75,11 @@
     >
   </nvd3-discrete-bar-chart>
 
-  <div class="sliders">
-    <label>School default probability {{schoolDefaultProbability * 100 | number : 0}}%</label>
-    <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolDefaultProbability"></slider>
-  </div>
+  <h3>Losses when {{schoolName}} Doesn't Default</h3>
 
-  <h2>Defaults when {{schoolName}} Doesn't Default</h2>
+  <p>
+  Below is a graph of the probability distribution of different default levels in the normal case: when {{schoolName}} <em>doesn't</em> default. There are two levers to pull here that reduce interest rates for the students. The first is when {{schoolName}} covers the first <i>x%</i> of student defaults, which moves our risk to the left. The second is when {{schoolName}} shares the remaining <i>y%</i> of the losses, which squashes our risk towards the left. The overall height of this component of the risk is determined by the school default risk above.
+  </p>
 
   <nvd3-stacked-area-chart
     data="schoolPaysChartData"
@@ -70,9 +101,11 @@
     <slider floor="0" ceiling="1" step="0.01" precision="2" ng-model="schoolSubsidy"></slider>
   </div>
 
+  <h2>Overall Rates</h2>
+  <p>
+    The expected losses from both scenarios of {{schoolName}} defaulting and not defaulting are added up and used along with our target net investor return to calculate the interest rate for the students below:
+  </p>
   <interest-table></interest-table>
-
-  <div>{{loan.totalInterest() | currency : $}}</div>
 </div>
 
 <div class="row marketing" ng-controller="RepaymentsCtrl">
