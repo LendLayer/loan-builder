@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+for school in hackreactor hackbright swc; do
+  git checkout $school
+  git rebase master
+
+  # assuming the latest commit is the build commit,
+  # rebuild the project and amend the commit with the changes
+  git reset --soft 'HEAD^'
+  grunt build
+  git add -A dist
+  git commit -C ORIG_HEAD
+  
+  # redeploy
+  git push --force $school $school:master
+done
