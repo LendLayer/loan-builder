@@ -8,18 +8,18 @@
   </p>
 
   <ol>
-    <li>the net return we need to offer lenders in order to source capital,</li>
+    <li>the overall target return we need to offer lenders in order to source capital,</li>
     <li>our fee,</li>
     <li>how much we expect to lose from students not being able to repay their loan.</li>
   </ol>
 
   <p>
-    A number of schools have told us that they are a bit in the dark about how the last of these 3 components is estimated, so I built a little app to visualize how we're calculating rates and to show how we can work together to reduce them for the students.
+    A number of schools have told us that they are a bit in the dark about how the last of these 3 components is estimated, so here's a little app to visualize how we're calculating rates and to show how we can work together to reduce them for the students.
   </p>
   
   <h2>Student Defaults</h2>
   <p>
-  In the student defaults distribution below, the x-axis represents the percentage of dollars that aren't paid back by a particular cohort of students, and the y-axis represents the probability of seeing that default percentage. So, for example, in the model below there is a {{ studentDefaultRates[0]['30'] * 100}}% chance that around 30% of the total dollars from a particular cohort won't be paid back.
+  In the student defaults distribution below, the x-axis represents the (unknown) percentage of dollars that aren't paid back by a particular cohort of students in the future, and the y-axis represents the probability of actually seeing that default percentage. So, for example, in the model below, we're estimating a {{ studentDefaultRates[0]['40'] * 100}}% chance that around 40% of the total dollars from a particular cohort won't be paid back.
   </p>
   <nvd3-stacked-area-chart
     data="studentChartData"
@@ -31,9 +31,9 @@
     ydomain="[0,1]"
     objectequality="true">
   </nvd3-stacked-area-chart>
-  <p>We've estimated the students' default distribution based on the data you provided us with. We have to be conservative for the first cohort, and you can adjust the percentages yourself to see how as the students successfully repay, and the distribution moves towards the left, the interest rates are lowered. Just click to edit the probability boxes below (apart from the '0%' probability, which is calculated from the rest of the boxes):</p>
+  <p>We've estimated the students' default distribution based on the data you provided us with. We have to be conservative for the first cohort, and you can adjust the percentages yourself to see how, as the students successfully repay, and the distribution moves towards the left, the interest rates are lowered. Just click to edit the probability boxes below (apart from the '0%' probability, which is calculated from the rest of the boxes):</p>
   <student-default-rates></student-default-rates>
-  <h4><b>Expected (mean) student default rate: {{expectedStudentDefault | number : 2}}%.</b></h4>
+  <p>Based on the probabilities in the boxes above, the expected (mean) student default rate is <b>{{expectedStudentDefault | number : 2}}%</b>.</p>
 
   <h2>School Defaults</h2>
   <p>
@@ -110,6 +110,21 @@
 
 <div class="row marketing" ng-controller="RepaymentsCtrl">
   <h1>Repayment Schedule</h1>
+  <p>
+    Now that we have an interest rate, the goal is to find a repayment schedule that gets the student out of debt and into financial independence quickly, but that is manageable given the career path she is undertaking. We can put together a repayment structure that makes sense for the student, based on 4 factors:
+  </p>
+
+  <ol>
+    <li>how much she needs to borrow,</li>
+    <li>when she can expect to start her fancy new job,</li>
+    <li>her expected starting salary,</li>
+    <li>the cost of living in the city she will be working in.</li>
+  </ol>
+
+  <p>
+  The student is guaranteeing that they are unemployed for the duration of the course, plus 4-6 weeks after the course has finished and they are interviewing. During the initial <em>grace period</em>, the student makes small payments, to check that everything is wired up correctly and in order, but that is easily manageable. After this period, the loan is repaid in equal monthly installments.
+  </p>
+
   <h2>Monthly Loan Balance</h2>
   <nvd3-multi-bar-chart
     data="balancesChartData"
