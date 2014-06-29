@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-for school in hackreactor hackbright swc; do
+for school in hackreactor hackbright swc starterleague; do
   git checkout $school
   git rebase master
 
